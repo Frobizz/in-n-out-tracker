@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5907650023117465"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Is Ridgefield In-N-Out Open Yet?</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff8f0;
+      color: #333;
+      margin: 0;
+      padding: 2rem;
+      max-width: 700px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      color: #c90000;
+    }
+    .status {
+      font-size: 1.5rem;
+      text-align: center;
+      margin: 1rem 0;
+      background: #f4f4f4;
+      padding: 1rem;
+      border-radius: 10px;
+    }
+    #countdown {
+      font-size: 1.2rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .signup {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+    .signup input {
+      padding: 0.5rem;
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+    .signup button {
+      padding: 0.5rem 1rem;
+      background: #c90000;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .updates {
+      font-size: 0.95rem;
+    }
+    .updates li {
+      margin-bottom: 0.3rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Is Ridgefield In-N-Out Open Yet?</h1>
+
+  <div class="status" id="status">❌ Not Yet Open</div>
+
+  <div id="countdown">Opening anticipated between mid-June and mid-July 2025</div>
+
+  <div class="signup">
+    <h3>Get Notified When It Opens</h3>
+    <input type="email" placeholder="Enter your email" id="emailInput" />
+    <button onclick="handleSignup()">Notify Me</button>
+    <p id="signupMsg"></p>
+  </div>
+
+  <h3>Latest Updates</h3>
+  <ul class="updates">
+    <li>🟢 July 30 – Exterior lights turned on at night (via Fox13)</li>
+    <li>🟡 July 12 – Sign installed on building (via KHQ)</li>
+    <li>🔧 June 15 – Final utility hookups observed (via Ridgefield FB group)</li>
+  </ul>
+
+  <script>
+    const openingDate = new Date("2025-07-12T10:00:00Z");
+    const now = new Date();
+    const countdownElement = document.getElementById("countdown");
+    const statusElement = document.getElementById("status");
+
+    if (now >= openingDate) {
+      statusElement.textContent = "✅ YES! Now Open!";
+      countdownElement.style.display = "none";
+    } else {
+      const interval = setInterval(() => {
+        const now = new Date().getTime();
+        const timeLeft = openingDate - now;
+
+        if (timeLeft <= 0) {
+          clearInterval(interval);
+          statusElement.textContent = "✅ YES! Now Open!";
+          countdownElement.style.display = "none";
+        } else {
+          const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
+          const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
+          countdownElement.textContent = `${days}d ${hours}h ${minutes}m until opening (est.)`;
+        }
+      }, 1000);
+    }
+
+    function handleSignup() {
+      const email = document.getElementById("emailInput").value;
+      const msg = document.getElementById("signupMsg");
+      if (!email.includes("@")) {
+        msg.textContent = "Please enter a valid email.";
+        return;
+      }
+      msg.textContent = "Thanks! We'll notify you when it opens.";
+      // This is a placeholder. Integrate with Mailchimp or Brevo later.
+    }
+  </script>
+</body>
+</html>
